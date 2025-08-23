@@ -69,6 +69,9 @@ public class Main {
         alfabeto[7] = '7';
         alfabeto[8] = '8';
         alfabeto[9] = '9';
+        alfabeto[10] = '/';
+        alfabeto[11] = ' ';
+        alfabeto[12] = ':';
 
 
         //mapa de estados
@@ -76,6 +79,24 @@ public class Main {
         estados[0] = "q0";
         estados[1] = "q1";
         estados[2] = "q2";
+        estados[3] = "q3";
+        estados[4] = "q4";
+        estados[5] = "q5";
+        estados[6] = "q6";
+        estados[7] = "q7";
+        estados[8] = "q8";
+        estados[9] = "q9";
+        estados[10] = "q10";
+        estados[11] = "q11";
+        estados[12] = "q12";
+        estados[13] = "q13";
+        estados[14] = "q14";
+        estados[15] = "q15";
+        estados[16] = "q16";
+        estados[17] = "q17";
+        estados[18] = "q18";
+        estados[19] = "q19";
+        estados[20] = "q20";
 
         String estado_inicial = "q0";
 
