@@ -105,7 +105,7 @@ public class Main {
 
         //estados finais
         String[] estados_finais = new String[1];
-        estados_finais[0] = "q20";
+        estados_finais[0] = "q24";
 
         //tabela de transição de AFD para reconhecimento números de dois dígitos
         int[][] matriz = new int[25][13];
