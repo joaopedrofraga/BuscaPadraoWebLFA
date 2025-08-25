@@ -52,10 +52,15 @@ public class Main {
     public static void main(String[] args) {
         //instancia e usa objeto que captura código-fonte de páginas Web
         CapturaRecursosWeb crw = new CapturaRecursosWeb();
-        crw.getListaRecursos().add("https://www.univali.br/");
+        crw.getListaRecursos().add("https://www.camarapederneiras.sp.gov.br/calendario/");
+        //crw.getListaRecursos().add("https://prefeitura.poa.br/smsurb/noticias/parque-alim-pedro-recebe-servico-de-poda-preventiva");
+        crw.getListaRecursos().add("https://www.itapema.sc.gov.br/noticia/equipes-de-itapema-representam-o-municipio-em-diversas-cidades-catarinenses-neste-fim-de-semana");
+        crw.getListaRecursos().add("https://www.tijucas.sc.gov.br/noticias/detalhe/secretaria-de-agricultura-inaugura-nova-sede-em-tijucas");
         ArrayList<String> listaCodigos = crw.carregarRecursos();
 
-        String codigoHTML = listaCodigos.get(0);
+        String codigoHTML1 = listaCodigos.get(0);
+        String codigoHTML2 = listaCodigos.get(1);
+        String codigoHTML3 = listaCodigos.get(2);
 
         //mapa do alfabeto
         char[] alfabeto = new char[13];
@@ -261,11 +266,13 @@ public class Main {
 
         String palavra = "";
 
+        System.out.println ("PRIMEIRO SITE:");
+
         //varre o código-fonte de um código
-        for (int i=0; i<codigoHTML.length(); i++){
+        for (int i=0; i<codigoHTML1.length(); i++){
 
             estado_anterior = estado;
-            estado = proximo_estado(alfabeto, matriz, estado, codigoHTML.charAt(i));
+            estado = proximo_estado(alfabeto, matriz, estado, codigoHTML1.charAt(i));
             //se o não há transição
             if (estado == -1){
                 //pega estado inicial
@@ -285,7 +292,81 @@ public class Main {
                 
             }else{
                 //se houver transição válida, adiciona caracter a palavra
-                palavra += codigoHTML.charAt(i);
+                palavra += codigoHTML1.charAt(i);
+            }
+        }
+
+
+        //foreach no Java para exibir todas as palavras reconhecidas
+        for (String p: palavras_reconhecidas){
+            System.out.println (p);
+        }
+
+        palavras_reconhecidas.clear();
+        System.out.println ("SEGUNDO SITE:");
+
+        //varre o código-fonte de um código
+        for (int i=0; i<codigoHTML2.length(); i++){
+
+            estado_anterior = estado;
+            estado = proximo_estado(alfabeto, matriz, estado, codigoHTML2.charAt(i));
+            //se o não há transição
+            if (estado == -1){
+                //pega estado inicial
+                estado = get_string_ref(estados, estado_inicial);
+                // se o estado anterior foi um estado final
+                if (get_string_ref(estados_finais, estados[estado_anterior]) != -1){
+                    //se a palavra não é vazia adiciona palavra reconhecida
+                    if ( ! palavra.equals("")){
+                        palavras_reconhecidas.add(palavra);
+                    }
+                    // se ao analisar este caracter não houve transição
+                    // teste-o novamente, considerando que o estado seja inicial
+                    i--;
+                }
+                //zera palavra
+                palavra = "";
+                
+            }else{
+                //se houver transição válida, adiciona caracter a palavra
+                palavra += codigoHTML2.charAt(i);
+            }
+        }
+
+
+        //foreach no Java para exibir todas as palavras reconhecidas
+        for (String p: palavras_reconhecidas){
+            System.out.println (p);
+        }
+
+        palavras_reconhecidas.clear();
+        System.out.println ("TERCEIRO SITE:");
+
+        //varre o código-fonte de um código
+        for (int i=0; i<codigoHTML3.length(); i++){
+
+            estado_anterior = estado;
+            estado = proximo_estado(alfabeto, matriz, estado, codigoHTML3.charAt(i));
+            //se o não há transição
+            if (estado == -1){
+                //pega estado inicial
+                estado = get_string_ref(estados, estado_inicial);
+                // se o estado anterior foi um estado final
+                if (get_string_ref(estados_finais, estados[estado_anterior]) != -1){
+                    //se a palavra não é vazia adiciona palavra reconhecida
+                    if ( ! palavra.equals("")){
+                        palavras_reconhecidas.add(palavra);
+                    }
+                    // se ao analisar este caracter não houve transição
+                    // teste-o novamente, considerando que o estado seja inicial
+                    i--;
+                }
+                //zera palavra
+                palavra = "";
+                
+            }else{
+                //se houver transição válida, adiciona caracter a palavra
+                palavra += codigoHTML3.charAt(i);
             }
         }
 
